@@ -1,4 +1,19 @@
-body{
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="Barkhayot Juraev">
+        <meta name="author" content="Barkhayot Juraev">
+        <title>Barkhayot</title>
+        <link rel="stylesheet" href="">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@200;400;500;510&display=swap" rel="stylesheet">
+    </head>
+    <style>
+        body{
 	background-color:rgb((255, 255, 255), 255, 255)!important;
     font-family: 'Urbanist', sans-serif;
 	
@@ -126,3 +141,187 @@ body.dark-mode {
     background-color: #1e1e1e;
     color: #fff;
 }
+    </style>
+    <body>
+        <header>
+          <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid" >
+                <a class="navbar-brand" href=""><h3 style="font-style:inherit; font-size: 30px; font-weight: 700; letter-spacing: 0;">Barkhayot</h3></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                    <li class="nav-item">
+                    </li>
+                  </ul>
+                  <span class="navbar-text">
+                    <li class="nav-item">
+                        <a class="nav-link" style="font-weight: 700;" href="./blog.html">Blog</a>
+                      </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="font-weight: 700;" target="_blank" href="https://github.com/barkhayot?tab=repositories">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link"  style="font-weight: 700;" target="_blank"  href="https://raw.githubusercontent.com/barkhayot/personal/main/download.png">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="font-weight: 700;" target="_blank"  href="https://t.me/code_n0tes">Notes</a>
+                    </li>
+                  </span>
+                </div>
+              </div>
+            </nav>
+          </div>
+            
+            <br>
+        
+        
+        </header> 
+<div class="container">
+    <h3 style="text-align: center; font-weight: bold;"> Latest Posts</h3>
+    <p></p>
+    <br>
+    <p></p>
+    <div id="cards-container" class="container"></div>
+
+      
+
+      
+  
+    </div>
+<br>
+        <footer class="footer">
+        </footer>
+        
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+    </body>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    const cardsContainer = document.getElementById("cards-container");
+
+    // Replace 'your-medium-username' with your actual Medium username
+    const mediumApiUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@coderviewer";
+
+    fetch(mediumApiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const articles = data.items;
+
+                    articles.forEach(article => {
+                        const card = createBootstrapCard(article);
+                        cardsContainer.appendChild(card);
+
+                        // Add click event listener to each card
+                        // card.addEventListener("click", function () {
+                        //     // Save selected article to sessionStorage
+                        //     sessionStorage.setItem("selectedArticle", JSON.stringify(article));
+                        //     // Redirect to the detail page
+                        //     window.location.href = "detail.html";
+                        // });
+                    });
+                })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+
+    function createBootstrapCard(article) {
+        const card = document.createElement("div");
+        card.className = "card mb-3"; // Add Bootstrap 'card' class
+        //card.style.maxWidth = "540px";
+        
+
+        const row = document.createElement("div");
+        row.className = "row g-0 shadow-lg border-info";
+
+        row.addEventListener("click", function() {
+        window.location.href = article.link; // Redirect to the blog post when the row is clicked
+    });
+
+        const imageCol = document.createElement("div");
+        imageCol.className = "col-md-4";
+
+        const imageSrc = extractImageSrc(article.description);
+
+        if (imageSrc) {
+            const image = document.createElement("img");
+            image.src = imageSrc;
+            image.alt = article.title;
+            image.className = "article-image"; // Add custom class
+            imageCol.appendChild(image);
+        }
+
+        if (article.thumbnail) {
+            const image = document.createElement("img");
+            image.src = article.thumbnail;
+            image.alt = article.title;
+            image.className = "img-fluid rounded-start";
+            imageCol.appendChild(image);
+        }
+
+        const textCol = document.createElement("div");
+        textCol.className = "col-md-8";
+
+        const cardBody = document.createElement("div");
+        cardBody.className = "card-body";
+
+        const title = document.createElement("h5");
+        title.className = "card-title";
+        title.textContent = article.title;
+
+        const hr = document.createElement("hr")
+
+        const description = document.createElement("p");
+        description.className = "card-text";
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = article.description;
+        const textContent = tempDiv.textContent || tempDiv.innerText; // Get text content without HTML tags
+        const truncatedText = textContent.split(' ').slice(0, 70).join(' '); // Limit to 20 words
+        description.textContent = truncatedText;
+
+        const pubDate = document.createElement("p");
+        pubDate.className = "card-text";
+        pubDate.innerHTML = `<small class="text-muted">Last updated ${new Date(article.pubDate).toLocaleString()}</small>`;
+
+        cardBody.appendChild(title);
+
+        cardBody.appendChild(pubDate);
+        cardBody.appendChild(hr)
+        cardBody.appendChild(description);
+        
+
+        textCol.appendChild(cardBody);
+        row.appendChild(imageCol);
+        row.appendChild(textCol);
+        card.appendChild(row);
+        
+
+        return card;
+    }
+    function extractImageSrc(description) {
+        const tempElement = document.createElement('div');
+        tempElement.innerHTML = description;
+
+        const imgElement = tempElement.querySelector('img');
+
+        return imgElement ? imgElement.src : '';
+    }
+});
+    </script>
+
+</html>
